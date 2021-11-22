@@ -1,6 +1,6 @@
 # LeakyRoof
 
-Scrape and process pixels of a solar irradianc map
+Scrape and process pixels of a solar irradiance map
 
 Specifically built for scraping "https://www.ema.gov.sg/solarmap.aspx" for research on solar irradiance and intermittency  
 
@@ -9,7 +9,7 @@ main.py will run every 300s, which is when image updates on website
 data.csv will contain both solar data (districts) and area weather (not related to districts).
 Each point in scrape.py corresponds to each district in Singapore
 
-Row[0] = datetime
+Row[0] = datetime (YYMMDDHHMM format, Singaprore time)
 
 Row[1-30] = Districts 1-30
 
