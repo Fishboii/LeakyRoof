@@ -64,7 +64,7 @@ def scrape(deletefile=False):
     # plug numbers into csv file
     fileappend = open("data.csv", "a")
     # datetime
-    fileappend.write("\n{}".format(time.strftime("%y, %m, %d, %H, %M", time.gmtime()).replace(", ", "")))
+    fileappend.write("\n{}".format(time.strftime("%y, %m, %d, %H, %M", time.localtime()).replace(", ", "")))
     for i in range(len(pctgclr) - 3):
         # add value
         fileappend.write(", {}".format(pctgclr[i]))
@@ -72,6 +72,7 @@ def scrape(deletefile=False):
 
     if deletefile:
         os.remove(filename)
+
 
 def weather():
     """Add weather data to csv file"""
