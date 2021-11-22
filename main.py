@@ -1,5 +1,6 @@
 import scrape
 import time
+
 while True:
     scrape.scrape(True)
     scrape.weather()

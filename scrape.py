@@ -73,6 +73,7 @@ def scrape(deletefile=False):
     if deletefile:
         os.remove(filename)
 
+
 def weather():
     """Add weather data to csv file"""
     # get page and datasets
