@@ -23,6 +23,7 @@ def scrape(deletefile=False):
     deletefile = False by default
     set True to delete png file after grabbing data
     """
+
     # process HTML from requests using bs4 parser
     html_page = requests.get('https://www.ema.gov.sg/solarmap.aspx')
     # mmm soup
@@ -71,7 +72,12 @@ def scrape(deletefile=False):
     fileappend.close()
 
     if deletefile:
+        # 10s before closing in order to make sure it is not being used
+        time.sleep(10)
         os.remove(filename)
+
+    elif not deletefile:
+        time.sleep(10)
 
 
 def weather():
@@ -81,13 +87,12 @@ def weather():
     soup = BeautifulSoup(html_page.content, 'html.parser')
     fileappend = open("data.csv", "a")
     for i in range(1, 49):
-        # index 0 and 25 are titles
+        # index 0 and 25 are titles, so skip them
         if i == 25:
             continue
         else:
             cls = soup.findAll('tr')[i]
             # something to do with encoding where \xa0 appears
             weather = cls.text.strip(" ").replace("\xa0", "")
-            # classify and append weather
-            fileappend.write(", {}".format(classify.weather(weather)))
+            fileappend.write(", {}".format(classify.weather(weather.lower())))
     fileappend.close()

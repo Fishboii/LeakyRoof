@@ -1,7 +1,8 @@
 def weather(data):
     '''
     Nothing but brute forcing, there may be regex that can do the same but im too lazy to do so.
-    This shit is so ineffective and ugly that it makes me cringe, but theres no switch and case in 3.7 so good luck hahaha'''
+    This shit is so ineffective and ugly that it makes me cringe, but theres no switch and case in 3.7 so good luck hahaha
+    If word cannot be classified, data will be returned'''
     words = data.split(" ")
     if words[-1] == "fair":
         return 1
@@ -29,17 +30,18 @@ def weather(data):
         return 12
     elif words[-1] == "showers" and words[-2] == "light":
         return 13
-    elif words[-1] == "showers" and words[-2] != ("passing" or "light" or "heavy" or "thundery"):
-        return 14
     elif words[-1] == "showers" and words[-2] == "heavy":
         return 15
     elif words[-1] == "showers" and words[-2] == "thundery" and words[-3] != "heavy":
         return 16
     elif words[-1] == "showers" and words[-2] == "thundery" and words[-3] == "heavy":
         return 17
+    elif words[-1] == "showers" and words[-2] != ("passing" or "light" or "heavy" or "thundery"):
+        return 14
     elif "gusty" in words:
         return 18
-
+    else:
+        return data
 
 
 """
@@ -65,7 +67,6 @@ for i in ['e fair',
 'e heavy thundery showers with gusty winds']:
     print(weather(i))"""
 
-
 """ TODO add to readme
 fair 1
 fair & warm 2
@@ -77,7 +78,7 @@ windy 7
 mist 8
 light rain 9
 moderate rain 10
-heavy rain 11-
+heavy rain 11
 passing showers 12
 light showers 13
 showers 14
